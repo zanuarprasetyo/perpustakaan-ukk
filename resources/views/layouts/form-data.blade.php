@@ -106,6 +106,77 @@
     <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/adminlte/dist/js/adminlte.min.js?v=3.2.0"></script>
     <script src="/adminlte/plugins/select2/js/select2.min.js"></script>
+    <script>
+        // Function to check file extension
+        function checkFileExtension() {
+            var fileName = document.getElementById("foto").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile != "jpg" && extFile != "jpeg" && extFile != "png" && extFile != "gif" && extFile != "svg") {
+                $('#warningModal').modal('show'); // Show warning modal if file extension is not allowed
+                document.getElementById("foto").value = ""; // Clear file input field
+            }
+        }
+    
+        // Add event listener to input file element
+        document.getElementById("foto").addEventListener("change", checkFileExtension);
+    </script>
+
+    <!-- Tambahkan modal warning -->
+<div class="modal fade" id="modalWarning" tabindex="-1" role="dialog" aria-labelledby="modalWarningLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalWarningLabel">Peringatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                DATA STOK TIDAK DAPAT MINUS
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tambahkan skrip JavaScript -->
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            var stokValue = parseInt($('#stok').val());
+            if (stokValue < 0) {
+                $('#modalWarning').modal('show');
+                event.preventDefault(); // Menghentikan pengiriman formulir jika stok negatif
+            }
+        });
+    });
+</script>
+
+    
+
+    <!-- Modal Warning -->
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="warningModalLabel">Peringatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                FILE GAMBAR YANG DITAMBAHKAN KURANG TEPAT. Silakan unggah file gambar dengan format yang benar (jpeg, png, jpg, gif, svg).
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 

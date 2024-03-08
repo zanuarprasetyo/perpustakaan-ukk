@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard|PERPUSWEB</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css?v=3.2.0">
     <link rel="stylesheet" href="adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -32,7 +33,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 d-flex justify-content-start align-items-center">
-                            <a href="{{ route('registerAdmin.create')  }}" class="btn btn-primary btn-sm mt-2">
+                            <a href="{{ route('registerAdmin.create') }}" class="btn btn-primary btn-sm mt-2">
                                 <i class="fas fa-plus"></i> Tambah User
                             </a>
                         </div>
@@ -65,7 +66,6 @@
                                         <th>Nama Lengkap</th>
                                         <th>Alamat</th>
                                         <th>User Type</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -130,57 +130,41 @@
                         data: 'user_type',
                         name: 'user_type'
                     },
-                    {
-                        data: null,
-                        defaultContent: `<div class="btn-group" role="group">
-                    </button>
-                    <button class="btn btn-primary btn-xs ml-1" name="editBtn">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger btn-xs ml-1" name="deleteBtn">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>`,
-                    },
                     //     {
                     //         data: null,
                     //         defaultContent: `<div class="btn-group" role="group">
-                    //     </button>
-                    //     <button class="btn btn-primary btn-xs ml-1" name="editBtn">
-                    //         <i class="fa fa-edit"></i>
-                    //     </button>
-                    //     <button class="btn btn-danger btn-xs ml-1" name="deleteBtn">
-                    //         <i class="fa fa-trash"></i>
-                    //     </button>
-                    // </div>`,
+                //     </button>
+                //     <button class="btn btn-primary btn-xs ml-1" name="editBtn">
+                //         <i class="fa fa-edit"></i>
+                //     </button>
+                //     <button class="btn btn-danger btn-xs ml-1" name="deleteBtn">
+                //         <i class="fa fa-trash"></i>
+                //     </button>
+                // </div>`,
                     //     },
                 ],
             });
 
-            $('#register-table tbody').on('click', 'button[name="editBtn"]', function() {
-                var data = t.row($(this).parents('tr')).data(); // var data per row
-                window.location = "{{ route('register.edit') }}?id=" + data['id'];
-            });
-
-            $('#register-table tbody').on('click', 'button[name="deleteBtn"]', function() {
-                var data = t.row($(this).parents('tr')).data();
-                if (confirm(`Apakah anda yakin mau menghapus buku ini
-            Judul: ${data['judul']}
-            Penulis: ${data['penulis']}
-            Penerbit: ${data['penerbit']}
-            Tahun Terbit: ${data['tahun_terbit']}
-        `)) {
-                    const response = fetch(`/buku/delete/${data['id']}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    response.then(res => res.json()).then(d => {
-                        window.location = "{!! route('login.tabel-register') !!}";
-                    });
-                }
-            });
+            //     $('#register-table tbody').on('click', 'button[name="deleteBtn"]', function() {
+            //         var data = t.row($(this).parents('tr')).data();
+            //         if (confirm(`Apakah anda yakin mau menghapus user ini
+        //     Username: ${data['username']}
+        //     Email: ${data['email']}
+        //     Nama Lengkap: ${data['nama_lengkap']}
+        //     Alamat: ${data['alamat']}
+        // `)) {
+            //             const response = fetch(`/register/${data['id']}`, {
+            //                 method: 'DELETE',
+            //                 headers: {
+            //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //                 }
+            //             });
+            //             response.then(res => res.json()).then(d => {
+            //                 // Handle response or redirection after deletion
+            //                 window.location = "{!! route('login.tabel-register') !!}";
+            //             });
+            //         }
+            //     });
         });
     </script>
 

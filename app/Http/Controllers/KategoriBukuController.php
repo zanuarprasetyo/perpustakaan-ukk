@@ -33,31 +33,28 @@ class KategoriBukuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
+{
+    return view('layouts.kategori-buku-create');
+}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+public function store(Request $request)
+{
+    $request->validate([
+        'nama_kategori' => 'required|string|max:255|unique:kategori_buku,nama_kategori',
+    ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    KategoriBuku::create([
+        'nama_kategori' => $request->nama_kategori,
+    ]);
+
+    return redirect()->route('kategori.index')->with('success', 'Kategori buku berhasil ditambahkan.');
+}
+
+public function show($id)
+{
+    $kategori = KategoriBuku::findOrFail($id);
+    return view('layouts.kategori-buku-show', compact('kategori'));
+}
 
     /**
      * Show the form for editing the specified resource.

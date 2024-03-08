@@ -104,7 +104,7 @@ class RegisterAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
-    }
+{
+    // 
+}
 }

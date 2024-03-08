@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard|PERPUSWEB</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css?v=3.2.0">
     <link rel="stylesheet" href="adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -31,11 +32,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 d-flex justify-content-start align-items-center">
-                            <a href="{{ route('layouts.form-data')  }}" class="btn btn-primary btn-sm mt-2">
+                        {{-- <div class="col-md-8 d-flex justify-content-start align-items-center">
+                            <a href="{{ route('layouts.form-data') }}" class="btn btn-primary btn-sm mt-2">
                                 <i class="fas fa-plus"></i> Tambah Data
                             </a>
-                        </div>
+                        </div> --}}
 
                         <!-- <div class="col-md-4">
                             <div class="input-group mt-3">
@@ -61,7 +62,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -108,18 +108,6 @@
                     {
                         data: 'nama_kategori',
                         name: 'nama_kategori'
-                    },
-                    {
-                        data: null,
-                        defaultContent: `<div class="btn-group" role="group">
-                    </button>
-                    <button class="btn btn-primary btn-xs ml-1" name="editBtn">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger btn-xs ml-1" name="deleteBtn">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>`,
                     },
                 ],
             });
